@@ -1,0 +1,40 @@
+<head>
+    <title>Pikr</title>
+
+        <!-- Bulma CSS library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    </script>
+
+    <!-- To highligth python code -->
+    <link rel="alternate stylesheet" title="A 11 Y Dark" href="styles/a11y-dark.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/a11y-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js">      </script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+
+</head>
+<body>
+  
+    <div class="column is-one-third">
+        <p class="title is-3">Pikr</p>
+        <p class="subtitle is-5">Find your pick</p>
+    </div>
+    
+    <div class="tabs is-right">
+      <ul>
+        <li><a href="/">Pickr</a></li>
+        <li class="is-active" ><a href="/unittest">Unit Tests</a></li>
+      </ul>
+    </div>
+    <pre><code class="python">{{testResult}}</code></pre>
+    <pre><code class="python">{{text}}</code></pre>
+
+</body>

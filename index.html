@@ -1,0 +1,133 @@
+<head>
+    <title>Pikr</title>
+
+        <!-- Bulma CSS library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">  
+    </script>
+    
+    <script>
+        var new_field = '<div class="pickRow field is-horizontal">' +
+                        '    <div class="field-label is-normal">' +
+                        '        <label class="label">Name</label>' +
+                        '    </div>' +
+                        '    <div class="field-body">' +
+                        '        <div class="field">' +
+                        '            <div class="control">' +
+                        '                <input class="input" type="text" name="FirstName" placeholder="First Name">' +
+                        '            </div>' +
+                        '        </div>' +
+                        '        <div class="field">' +
+                        '            <div class="control">' +
+                        '                <input class="input" type="text" name="LastName" placeholder="Last Name">' +
+                        '            </div>' +
+                        '        </div>' +
+                        '        <div class="field">' +    
+                        '            <button type="button" id="deletePick" class="delete is-large"></button>' +
+                        '        </div>' +
+                        '    </div>' +
+                        '</div>'
+    
+        $(document).ready(function(){
+            $( "#addPick" ).bind( "click", function() {
+                $("#pickListControl").before(new_field)
+                $("#showPick-show").click()
+            });
+    
+            //$( "#submitPick" ).bind( "click", function() {
+            //    $(".pickRow").addClass('is-hidden');
+            //});
+        
+        });
+    
+        $(document).on( "click", "#deletePick", function() {
+            $(this).closest(".pickRow").remove()
+        });
+    
+        $(document).on( "click", "#showPick-hide", function() {
+            $(".pickRow").addClass('is-hidden');
+        });
+    
+        $(document).on( "click", "#showPick-show", function() {
+            $(".pickRow").removeClass('is-hidden');
+        });
+
+    </script>
+</head>
+
+</head>
+<body>
+
+    <div class="column is-one-third">
+        <p class="title is-3">Pikr</p>
+        <p class="subtitle is-5">Find your pick</p>
+    </div>
+    
+    <div class="tabs is-right">
+      <ul>
+        <li class="is-active" href="index.html"><a>Pickr</a></li>
+        <li><a href="unittest">Unit Tests</a></li>
+      </ul>
+    </div>
+    
+    <div class="column">
+        <div class="control block" id="showPick">
+            <label class="radio">
+                <input id="showPick-show" type="radio" name="answer" checked> Show picks
+            </label>
+            <label class="radio">
+                <input id="showPick-hide" type="radio" name="answer"> Hide picks
+            </label>
+        </div>       
+    </div>
+        
+    <form id="pickList" class="column" action="/pikr"  method="POST">
+        <div class="pickRow field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Name</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" name="FirstName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" name="LastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="field">  
+                    <button type="button" id="deletePick" class="delete is-large"></button>
+                </div>
+            </div>
+        </div>
+        <div id="pickListControl" class="field is-horizontal">
+            <div class="field-label"></div>
+            <div class="field-body">
+                <div class="field">
+                    <button type="button" id="addPick" class="button is-rounded is-danger">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="columns is-vcentered">
+        	<div class="column is-2 is-narrow is-offset-5">
+        		<button type="button" id="submitPick" class="button is-primary" hx-post="/pikr" hx-trigger="click" hx-target="#pickResult" hx-swap="innerHTML">Submit</button>
+        	</div>
+        	<div class="column is-4">
+        	    <label class="checkbox">
+        			<input type="checkbox" name="SameFamily" checked>
+                                Can pick in same family
+        		</label>
+            </div>
+        </div>
+    </form>
+
+    <div id="pickResult" class="column is-half is-offset-one-quarter">
+    </div>    
+    
+</body>
